@@ -9,6 +9,7 @@ namespace NodeGraph
 
 	struct Edge
 	{
+
 		Node* target;
 		float cost;
 	};
@@ -18,8 +19,8 @@ namespace NodeGraph
 		MathLibrary::Vector2 position;
 
 		float gScore;
-		float hScore;
 		float fScore;
+		float hScore;
 		Node* previous;
 
 		std::vector<Edge> connections;
@@ -55,5 +56,7 @@ namespace NodeGraph
 	/// <param name="drawnList">Nodes that have already been drawn</param>
 	void drawConnectedNodes(Node* node, std::deque<Node*>* drawnList = nullptr);
 
-	bool checkList(std::deque<Node*> list, Node* node);
+	bool checkList(std::deque<Node*> list, Node* lookingFor);
+
+	float updateHS(Node* currentNode, Node* end);
 };

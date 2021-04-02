@@ -1,6 +1,8 @@
 #include "PathfindBehavior.h"
 #include "Maze.h"
 
+
+
 void PathfindBehavior::update(Agent* owner, float deltaTime)
 {
 	//Don't update if disabled or no target
@@ -40,7 +42,7 @@ void PathfindBehavior::update(Agent* owner, float deltaTime)
 	MathLibrary::Vector2 steeringForce = desiredVelocity - owner->getVelocity();
 
 	//Apply the force
-	owner->applyForce(steeringForce);
+	owner->setVelocity(desiredVelocity);
 }
 
 void PathfindBehavior::draw(Agent* owner)

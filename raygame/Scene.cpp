@@ -101,4 +101,3 @@ void Scene::end()
 
     m_started = false;
 }
-
