@@ -63,11 +63,11 @@ std::deque<NodeGraph::Node*> NodeGraph::findPath(Node* start, Node* end)
 			Node* currentEdgeEnd = currentNode->connections[i].target;
 
 			//Check if node at the end of the edge is in the closed list
-			if (!isInList(closedList, currentEdgeEnd))
+			if (!checkList(closedList, currentEdgeEnd))
 			{
 
 				//Create a float and set it to be the g score of the iterator plus the cost of the edge
-				int tempGScore = currentNode->gScore + currentNode->connections[i].cost;
+				float tempGScore = currentNode->gScore + currentNode->connections[i].cost;
 
 				//Create a float and set it to be the h score of the node at the end of the edge
 				float tempHScore = currentEdgeEnd->hScore;
@@ -76,7 +76,7 @@ std::deque<NodeGraph::Node*> NodeGraph::findPath(Node* start, Node* end)
 				float tempFScore = tempGScore + tempHScore;
 
 				//Check if the node at the end of the edge is in the open list
-				if (!isInList(closedList, currentEdgeEnd))
+				if (!checkList(closedList, currentEdgeEnd))
 				{
 					//Set the nodes g score to be the g score calculated earlier
 					currentEdgeEnd->gScore = tempGScore;
@@ -155,9 +155,8 @@ void NodeGraph::drawConnectedNodes(Node* node, std::deque<Node*>* drawnList)
 	}
 }
 
-bool NodeGraph::isInList(std::deque<Node*> list, Node* node)
+bool NodeGraph::checkList(std::deque<Node*> list, Node* node)
 {
-
 	for (int i = 0; i < list.size(); i++)
 	{
 		if (list[i] == node)
